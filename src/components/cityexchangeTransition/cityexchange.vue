@@ -1,6 +1,7 @@
 <template>
   <div class="cityBar">
-    <div class="fromCity cityName" v-bind:style="{ color: citydata.fontColor}">
+    <div class="fromCity cityName" v-bind:style="{ color: citydata.fontColor}"
+         @click.prevent.stop="fromClick">
       <transition name="fromcityshow" v-on:after-leave="fromCityleave">
         <span class="fold-item" v-show="translateFlag">{{fromCity}}</span>
       </transition>
@@ -13,7 +14,8 @@
             height:citydata.logoheight}"
         :class="{exchangeActive:exchangeActiveFlag,exchangeActiveReverse:!exchangeActiveFlag}"
         @click="exchange"></em>
-    <div class="toCity cityName" v-bind:style="{ color: citydata.fontColor}">
+    <div class="toCity cityName" v-bind:style="{ color: citydata.fontColor}"
+         @click.prevent.stop="toClick">
       <transition name="tocityshow">
         <span class="fold-item" v-show="translateFlag">{{toCity}}</span>
       </transition>
@@ -22,7 +24,7 @@
 </template>
 <script>
   export default {
-    props: ['citydata'],
+    props: ['citydata','from','to'],
     //citydata---> {
     // from:'南京',fromCity值
     // to:'上海',toCity值
@@ -30,8 +32,8 @@
     // fontColor:'pink' fromCity toCity字体颜色
     // }
     created(){
-      this.fromCity=this.citydata.from;
-      this.toCity=this.citydata.to
+      this.fromCity=this.from;
+      this.toCity=this.to
     },
     data() {
       return {
@@ -54,6 +56,12 @@
       exchange() {
         this.exchangeActiveFlag = !this.exchangeActiveFlag;
         this.translateFlag = !this.translateFlag;
+      },
+      fromClick() {
+        this.$parent.fromCityClick();
+      },
+      toClick(){
+        this.$parent.toCityClick();
       }
     }
   }

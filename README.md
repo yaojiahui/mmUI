@@ -18,5 +18,8 @@ npm run build
 npm run build --report
 ```
 #项目介绍
-*vue-cli搭建整体框架
-*利用Mockjs来模拟ajax请求
+#vue-cli搭建整体框架
+#利用Mockjs来模拟ajax请求
+#目录
+  #chooseseat-----在线选座组建
+  #cityexchangeTransition-----城市切换动画组建
